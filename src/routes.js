@@ -56,11 +56,29 @@ router.put("/products/update/:id", async (req,res)=>{
   } catch (error) {
     res.status(500).send(error.message)
   }
+1-100
+})
+//delete operation
+router.delete("/products/delete/:id", async (req,res)=>{
+ 
+  try {
+    const {id}=req.params;
+     const DeletedProduct=await Product.findByIdAndDelete(id)
+      //optinal 
+     if (!DeletedProduct){
+      res.status(500).send("product not found ")
+     }
+     else{
+     res.status(200).json({message:"product sended successful"})
+     }
+   
+    
+  } catch (error) {
+    res.send("something went wrong")
+    
+  }
 
 })
-
-//delete
-
 
 
 
